@@ -1,12 +1,17 @@
 body {
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   background-image: url(../imgs/background.jpg);
 }
 
 #game-board {
   min-height: 100vh;
   min-width: 100vw;
+}
+
+#time  {
+  position: fixed;
+  bottom: 0;
 }
 
 #playerA, #playerB{
