@@ -18,12 +18,14 @@ body {
 }
 
 #playerA {
-  transform: rotate(-90deg);
+  transform: rotate(90deg);
+  top: 160px;
+  right: 40px;
 }
 
 #playerB {
   transform: rotate(-90deg);
-  top: 100px;
+  top: 160px;
 }
 
 #header {
@@ -41,7 +43,22 @@ h2 {
   color: white;
 }
 
+.timer{
+  position: fixed;
+  bottom:0;
+}
+
+#total-time{
+  color: white;
+}
+
 .x-wing{
   height: 50px;
   width: 50px;
+}
+
+.asteroid{
+  position: absolute;
+  height: 75px;
+  width: 75px;
 }
