@@ -1,0 +1,28 @@
+body {
+  height: 100%;
+  width: 100%;
+  background-image: url(../imgs/background.jpg);
+}
+
+#game-board {
+  height: 100%;
+}
+
+#header {
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  font-size: 3vw;
+  text-align: center;
+  display: block;
+}
+
+h2 {
+  color: white;
+}
+
+.x-wing {
+  transform: rotate(-90deg);
+}

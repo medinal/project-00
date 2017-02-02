@@ -1,0 +1,39 @@
+body {
+  height: 100%;
+  width: 100%;
+  background-image: url(../imgs/background.jpg);
+}
+
+#game-board {
+  height: 100%;
+}
+
+#playerA {
+  position: absolute;
+  transform: rotate(-90deg);
+}
+
+#playerB {
+  position: absolute;
+  transform: rotate(-90deg);
+}
+
+#header {
+  text-align: center;
+}
+
+h1 {
+  color: white;
+  font-size: 3vw;
+  text-align: center;
+  display: block;
+}
+
+h2 {
+  color: white;
+}
+
+.x-wing{
+  height: 50px;
+  width: 50px;
+}
