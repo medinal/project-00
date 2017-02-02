@@ -5,6 +5,7 @@ $('#clear').click(reset);
 var y = $('#game-board').height();
 var x = $('#game-board').width()-85;
 
+
 function begin(){
   $('#play').attr("disabled", "disabled");
   $('#clear').removeAttr("disabled");
@@ -24,13 +25,15 @@ function countdown(){
   } else if ($('.notification').text()==="GO!"){
     $(document).keydown(move);
     timing();
-    setInterval(createAsteroid, Math.random() * (4000) + 500);
-    setTimeout(asteroidCollision,10);
+    var makeAsteroids = setInterval(createAsteroid, Math.random() * (4000) + 500);
+    var asteroidCollisionDetection = setTimeout(asteroidCollision,10);
   };
 }
 
 function endGame(){
   timing();
+  clearTimeout(7);
+  clearTimeout(8);
   $(document).off('keydown', move);
   var previous = $("#total-time").text();
   $("#previous").text("Previous: " + previous);
@@ -42,14 +45,18 @@ function endGame(){
   endTime=0;
   repeatDisplay=0;
   $('#playerA').css('left', "");
+  $('#playerA').css('top', "");
   $('#playerA').css('rotate', "");
-  $('#playerB').css('left', "");
+  $('#playerB').css('top', "");
   $('#playerB').css('rotate', "");
+  $('#playerB').css('left', "");
   $('.notification').text("");
 }
 
 function reset(){
   timing();
+  clearTimeout(7);
+  clearTimeout(8);
   $('#clear').attr("disabled","disabled");
   $('#play').removeAttr("disabled");
   $(document).off('keydown', move);
@@ -59,9 +66,11 @@ function reset(){
   endTime=0;
   repeatDisplay=0;
   $('#playerA').css('left', "");
-  $('#playerA').css('rotate', "");
+  $('#playerA').css('top', "");
+  $('#playerA').css('rotate', "-90");
+  $('#playerB').css('top', "");
+  $('#playerB').css('rotate', "-90");
   $('#playerB').css('left', "");
-  $('#playerB').css('rotate', "");
   $('.notification').text("");
 }
 
