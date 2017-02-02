@@ -24,6 +24,8 @@ function countdown(){
   } else if ($('.notification').text()==="GO!"){
     $(document).keydown(move);
     timing();
+    setInterval(createAsteroid, Math.random() * (4000) + 500);
+    setTimeout(asteroidCollision,10);
   };
 }
 
@@ -63,6 +65,7 @@ function reset(){
   $('.notification').text("");
 }
 
+// Player Motion
 function move(key){
   // Player A Right - Done
   if (key.which === 186 && (x-$('#playerA').position().left)>0){
@@ -72,7 +75,7 @@ function move(key){
     collision()
   }
     // Player A Left - Done
-    else if (key.which === 75 && (x-$('#playerA').position().left) > 0){
+    else if (key.which === 75 && ($('#playerA').position().left) > 0){
     var currentX = $('#playerA').position().left;
     $('#playerA').css('left',currentX-20);
     $('#playerA').css('rotate', 90);
@@ -131,18 +134,11 @@ function collision(){
   }
 }
 
-var startTime; // undefined
-
-// track the most recent "end" time
-var endTime; // undefined
-
-// a boolean to keep track of whether the timer is on or off
+// Timer Stuff
+var startTime;
+var endTime;
 var counting = false;
-
-// variable used for continuous time update while counting
 var repeatDisplay;
-
-// stores total time counted so far
 var total = 0;
 
 function timing(){
@@ -162,4 +158,32 @@ function timing(){
 function showCurrentTotal(){
   var elapsedTime = (Date.now() - startTime)/1000;
   $("#total-time").text( (total + elapsedTime) + " seconds" );
+}
+
+// Asteroid Stuff
+var asteroidNum=0;
+function createAsteroid(){
+  if (asteroidNum === 10){
+    asteroidNum=0;
+    $(".asteroid").remove();
+  } else {
+    $("#game-board").append('<img id="asteroid' + asteroidNum + '" class="asteroid img-responsive" data-xval="' + `${x}` +  '" src="assets/imgs/asteroid.png">')
+    $('#asteroid' + asteroidNum + '').css('left', x);
+    $('#asteroid' + asteroidNum + '').css('top', (Math.random()*y));
+    $('#asteroid' + asteroidNum + '').animate({
+      left: -x,
+    }, Math.random()*10000);
+    asteroidNum++;
+  };
+};
+
+function asteroidCollision(){
+  for (i=0; i<asteroidNum; i++){
+    if ($('#playerA').position().left < $('#asteroid' + asteroidNum + '').position().left + 200 &&
+       $('#playerA').position().left + 200 > $('#asteroid' + asteroidNum + '').position().left &&
+       $('#playerA').position().top < $('#asteroid' + asteroidNum + '').position().top + 75 &&
+       75 + $('#playerA').position().top > $('#asteroid' + asteroidNum + '').position().top) {
+       console.log("collision");
+    }
+  }
 }

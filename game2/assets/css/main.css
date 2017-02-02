@@ -23,14 +23,13 @@ body {
 }
 
 #playerA {
-  transform: rotate(90deg);
-  top: 160px;
-  right: 40px;
+  transform: rotate(-90deg);
+  top: 20vh;
 }
 
 #playerB {
   transform: rotate(-90deg);
-  top: 160px;
+  top: 50vh;
 }
 
 #header {
