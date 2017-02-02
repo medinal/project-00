@@ -31,9 +31,20 @@ function endGame(){
   $(document).off('keydown', move);
   var previous = $("#total-time").text();
   $("#previous").text("Previous: " + previous);
+  $('#play').removeAttr("disabled");
+  $("#total-time").text("");
+  total = 0;
+  startTime=0;
+  endTime=0;
+  repeatDisplay=0;
+  $('#playerA').css('left', "");
+  $('#playerA').css('rotate', "");
+  $('#playerB').css('left', "");
+  $('#playerB').css('rotate', "");
 }
 
 function reset(){
+  timing();
   $(document).off('keydown', move);
   $('#play').removeAttr("disabled");
   $("#total-time").text("");
