@@ -44,8 +44,7 @@ h2 {
 }
 
 .timer{
-  position: fixed;
-  bottom:0;
+  color: white;
 }
 
 #total-time{

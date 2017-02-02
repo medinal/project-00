@@ -1,6 +1,6 @@
 $('#play').click(begin);
 
-$('#clear').click(endGame);
+$('#clear').click(reset);
 
 var y = $('#game-board').height();
 var x = $('#game-board').width()-85;
@@ -18,28 +18,35 @@ function countdown(){
     countdown();
   } else if (parseInt($('.notification').text()) >1){
     countdownTime--;
-    console.log($('.notification').text());
     $('.notification').text(countdownTime);
     setTimeout(countdown,1000);
   } else if ($('.notification').text()==="GO!"){
-    console.log("success");
     $(document).keydown(move);
     timing();
   };
 }
 
 function endGame(){
-  $('#play').removeAttr("disabled");
-  $(document).off('keydown', move);
-  total = 0;
   timing();
+  $(document).off('keydown', move);
+  var previous = $("#total-time").text();
+  $("#previous").text("Previous: " + previous);
 }
-// //
-// // function createBoard(){
-// //   $('#playerA').attr('class', 'col-xs-1');
-// //   $('#playerB').attr('class', 'col-xs-1');
-// // }
-//
+
+function reset(){
+  $(document).off('keydown', move);
+  $('#play').removeAttr("disabled");
+  $("#total-time").text("");
+  total = 0;
+  startTime=0;
+  endTime=0;
+  repeatDisplay=0;
+  $('#playerA').css('left', "");
+  $('#playerA').css('rotate', "");
+  $('#playerB').css('left', "");
+  $('#playerB').css('rotate', "");
+}
+
 function move(key){
   // Player A Right - Done
   if (key.which === 186 && (x-$('#playerA').position().left)>0){
@@ -124,20 +131,12 @@ var total = 0;
 
 function timing(){
     if (!counting){
-      // we weren't counting,
-      // so this click should start the timer...
       counting = true;
-      // ... and record the start time...
       startTime = Date.now();
-      // ... and start updating the display every 100 milliseconds
       repeatDisplay = setInterval(showCurrentTotal, 100);
     } else {
-      // we were already counting,
-      // so this click should stop the timer...
       counting = false;
-      // ... and stop updating the display automatically...
       clearInterval(repeatDisplay);
-      // ... and update and display the total
       endTime = (Date.now() - startTime)/1000;
       total = total + endTime;
       $("#total-time").text( total + " seconds" );
@@ -145,8 +144,6 @@ function timing(){
 }
 
 function showCurrentTotal(){
-  // calculate time since we last pressed start
   var elapsedTime = (Date.now() - startTime)/1000;
-  // display the total time so far
   $("#total-time").text( (total + elapsedTime) + " seconds" );
 }
