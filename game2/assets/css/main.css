@@ -24,12 +24,12 @@ body {
 
 #playerA {
   transform: rotate(-90deg);
-  top: 20vh;
+  /*top: 20vh;*/
 }
 
 #playerB {
   transform: rotate(-90deg);
-  top: 50vh;
+  /*top: 50vh;*/
 }
 
 #header {
